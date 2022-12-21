@@ -1,0 +1,48 @@
+.error__block {
+  display: flex;
+  flex-direction: column;
+  border: hsl(0, 100%, 50%) solid 1px;
+  width: 100%;
+  background-color: hsl(0, 100%, 98%);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.error__block h5 {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 4px;
+  color: hsla(0, 98%, 16%, 0.822);
+}
+
+ul li a {
+  font-size: 10px;
+  color: hsla(0, 98%, 16%, 0.822);
+  text-decoration: underline;
+}
+
+ul {
+  margin: 0px;
+  padding-left: 0px;
+}
+li {
+  margin-top: 8px;
+  padding: 0px;
+  list-style: inside;
+  position: relative;
+  top: -5px;
+  margin-left: 5px;
+}
+
+ul li a span {
+  margin: 0;
+  position: relative;
+  left: -10px;
+  top: -3px;
+  padding-top: 0px;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: transparent;
+}

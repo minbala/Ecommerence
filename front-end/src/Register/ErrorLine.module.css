@@ -1,0 +1,7 @@
+.error__line span {
+  font-size: 10px;
+  position: relative;
+  top: -5px;
+  font-weight: 400;
+  margin-left: 5px;
+}

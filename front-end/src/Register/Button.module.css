@@ -1,0 +1,16 @@
+.button {
+  padding: 10px;
+  background: rgba(14, 12, 12, 0.879);
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 1.5px;
+  color: hsl(0, 0%, 100%);
+  font-size: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: hsl(0, 1%, 35%);
+}

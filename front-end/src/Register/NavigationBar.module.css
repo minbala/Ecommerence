@@ -1,0 +1,17 @@
+.nav {
+  border-bottom: solid hsla(0, 0%, 50%, 0.184) 0.3px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav h1 {
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: hsla(0, 0%, 0%, 0.784);
+}
+
+.nav h1:hover {
+  color: hsl(0, 1%, 35%);
+}
