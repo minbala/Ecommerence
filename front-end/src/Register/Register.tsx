@@ -18,18 +18,19 @@ export const Register = () => {
         <ErrorStatement>
           <h5>Please adjust the following</h5>
           <ul>
+          <ErrorList label="Namw can't be blank" />
             <ErrorList label="Email can't be blank" />
             <ErrorList label="Password can't be blank" />
             <ErrorList label="Password doesn't match" />
           </ul>
         </ErrorStatement>
         <Input
-          name="first-name"
+          name="name"
           type="text"
-          label="First Name"
-          id="first__name"
+          label=" Name"
+          id="name"
         />
-        <Input name="last-name" type="text" label="Last Name" id="last__name" />
+       
         <Input name="email" type="email" label="Email" id="email" />
         <Input name="password" type="password" label="Password" id="password" />
         <Input
