@@ -9,16 +9,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Router } from "express";
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
+import { verifyJwt } from "../utility/verify_jwt.js";
 export const router = Router();
 const prisma = new PrismaClient();
-router.get('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield prisma.user.findUnique({ where: { email: req.body.email } });
+router.get('/register', verifyJwt, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield prisma.user.findMany();
     res.json(user);
 }));
-router.post('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, email, password } = req.body;
-    const result = yield prisma.user.create({ data: {
-            name, email, password
-        } });
-    res.json(result);
+router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, email, password } = req.body;
+        const takenUser = yield prisma.user.findFirst({ where: {
+                name: name.toLowerCase()
+            } });
+        const takenUserEmail = yield prisma.user.findUnique({ where: { email } });
+        if (takenUser || takenUserEmail) {
+            res.json({ message: "User name or email has already been taken" });
+        }
+        else {
+            const hashPassword = yield bcrypt.hash(password, 10);
+            const result = yield prisma.user.create({ data: {
+                    name: name.toLowerCase(), email: email.toLowerCase(), password: hashPassword
+                } });
+            res.json(result);
+        }
+    }
+    catch (error) {
+        res.json(error);
+    }
 }));
