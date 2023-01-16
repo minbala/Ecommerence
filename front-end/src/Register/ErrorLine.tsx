@@ -9,7 +9,7 @@ export const ErrorLine = ({ inputType }: ErrorLineProps) => {
   return (
     <div className={styles.error__line}>
       <ErrorIcon color="error" fontSize="small"></ErrorIcon>
-      <span>{inputType} can't be blank</span>
+      <span>{inputType}</span>
     </div>
   );
 };

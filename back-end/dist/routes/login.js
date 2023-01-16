@@ -15,25 +15,26 @@ export const router = Router();
 const prisma = new PrismaClient();
 router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { nameOrEmail, password } = req.body;
-        yield prisma.user.findFirst({ where: { OR: { name: nameOrEmail.toLowerCase(), email: nameOrEmail } } }).then(user => {
+        const { name, password } = req.body;
+        const nameOrEmail = name;
+        yield prisma.user.findFirst({ where: { OR: [{ name: nameOrEmail.toLowerCase() }, { email: nameOrEmail }] } }).then(user => {
             if (!user) {
-                res.json({ message: "Invalid Username or Password" });
+                return res.json({ message: "Invalid Username or Password" });
             }
             ;
             bcrypt.compare(password, user === null || user === void 0 ? void 0 : user.password).then(isCorrect => {
                 if (isCorrect) {
                     const payload = {
-                        id: user === null || user === void 0 ? void 0 : user.id, userName: user === null || user === void 0 ? void 0 : user.name,
+                        id: user === null || user === void 0 ? void 0 : user.id, name: user === null || user === void 0 ? void 0 : user.name,
                     };
                     jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
                         if (err)
-                            res.json({ message: err });
-                        res.json({ message: "Success", token: `Bearer ${token}` });
+                            return res.json({ message: err });
+                        return res.json({ message: "Success", token: `Bearer ${token}` });
                     });
                 }
                 else {
-                    res.json({ message: "Invalid UserName or Password" });
+                    return res.json({ message: "Invalid UserName or Password" });
                 }
             });
         });
@@ -41,5 +42,4 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         res.json(error);
     }
-    ;
 }));

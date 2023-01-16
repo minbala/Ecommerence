@@ -1,0 +1,1 @@
+export const validateName=(email:string):boolean=>email.match(/^[a-zA-Z0-9]{3,20}$/)?true:false;

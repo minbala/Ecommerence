@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use(registerRouter);
 app.use(loginRouter);
-app.use("/", ,(req, res) => {
+app.use("/", (req, res) => {
   res.send("Hello World");
 });
 

@@ -14,8 +14,8 @@ import { verifyJwt } from "../utility/verify_jwt.js";
 export const router = Router();
 const prisma = new PrismaClient();
 router.get('/register', verifyJwt, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield prisma.user.findMany();
-    res.json(user);
+    var _a;
+    res.json({ isLoggedIn: true, username: (_a = req.user) === null || _a === void 0 ? void 0 : _a.name });
 }));
 router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

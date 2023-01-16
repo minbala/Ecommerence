@@ -1,8 +1,7 @@
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:khinyadanahaung33@localhost:5432/Ecommerence"
+  url      = env("DATABASE_URL")
 }
-
 model User{
     id Int @id @default(autoincrement())
     password String
